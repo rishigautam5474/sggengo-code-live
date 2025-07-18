@@ -30,7 +30,7 @@ app.use(cors({
   origin: "https://sggengo-live.onrender.com"
 }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json());  
 app.use(morgan('tiny'))
 
 //static files
