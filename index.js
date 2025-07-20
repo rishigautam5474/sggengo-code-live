@@ -5,7 +5,7 @@ import MongoDbConnection from "./db/connection.js";
 import cors from "cors";
 import morgan from "morgan";
 import authRouter from "./routes/auth.routes.js";
-import galleryRouter from "./routes/gallery.routes.js";
+import mediaRouter from "./routes/gallery.routes.js";
 import path from "path"
 import { fileURLToPath } from "url";
 const app = express();
@@ -42,10 +42,16 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/gallery", galleryRouter);
+app.use("/api/v1/gallery", mediaRouter);
 
 app.get(/^\/(?!api).*/, function(req, res) {
     res.sendFile(path.join(__dirname, "./sggengo-admin/dist/index.html"))
+})
+
+// Error Handler
+app.use((err, req, res, next) => {
+  const {status = 500, message = "Internal Server Error"} = err;
+  return res.status(status).json({error: true, success: false, message})
 })
 
 // listen port
