@@ -27,7 +27,7 @@ MongoDbConnection(process.env.MONGOOSE_URI)
   
 // middlewares
 app.use(cors({
-  origin: "https://sggengo-live.onrender.com/"
+  origin: "https://sggengo-live.onrender.com"
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  
